@@ -11,10 +11,10 @@ def main():
     setup(
         name='grony',
         version='0.1',
-        description='Executes git commands at specified intervals',
+        description='An utility to schedule git-related actions using crontab expressions.',
         long_description=read('README.md'),
         long_description_content_type="text/markdown",
-        keywords='git, automation, cron, crontab, development',
+        keywords='git, automation, cron, crontab',
 
         author='Luis Medel',
         author_email='luis@luismedel.com',
