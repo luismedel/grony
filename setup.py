@@ -28,7 +28,7 @@ def main():
             'Topic :: Software Development :: Version Control',
             'Topic :: Software Development :: Version Control :: Git',
             'Programming Language :: Python :: 3',
-            'License :: OSI Approved :: MIT License'
+            'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)'
         ],
 
         package_dir={ '': 'src'},
