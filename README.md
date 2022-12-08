@@ -173,9 +173,3 @@ Commands:
   show    Show the effeective settings for a repository.
   start   Starts the main process.
 ```
-
-## License
-
-BSD 3-Clause "New" or "Revised" License.
-
-See [LICENSE.md](LICENSE.md)
