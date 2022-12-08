@@ -10,7 +10,7 @@ def read(fname):
 def main():
     setup(
         name='grony',
-        version='0.2',
+        version='0.3',
         description='An utility to schedule git-related actions using crontab expressions.',
         long_description=read('README.md'),
         long_description_content_type="text/markdown",
