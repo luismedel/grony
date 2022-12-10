@@ -16,9 +16,10 @@ from tabulate import tabulate
 
 from typing import Any, Dict, List, Optional
 
-
-HOME_DIR = Path.home()
-DEFAULT_CONF = Path.joinpath(HOME_DIR, '.grony.conf')
+DEFAULT_CONF = os.environ.get('GRONY_CONFIG_PATH', None)
+if not DEFAULT_CONF:
+    dir = Path.joinpath(os.environ.get('XDG_CONFIG_HOME', Path.home()), '.grony')
+    DEFAULT_CONF = Path.joinpath(dir, 'grony.conf')
 
 
 def _is_success(result: Dict[str, Any]) -> bool:
@@ -69,7 +70,7 @@ def cli() -> None:
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 def start(dotfile_path: str, reload_delay: int, log_level: str,
           log_file: Optional[str] = None) -> None:
     """Starts the main process.
@@ -115,7 +116,7 @@ def start(dotfile_path: str, reload_delay: int, log_level: str,
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 def add(path: str, name: Optional[str], dotfile_path: str):
     """Adds a repository to the .grony.conf file.
     """
@@ -142,7 +143,7 @@ def add(path: str, name: Optional[str], dotfile_path: str):
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 @click.argument('name')
 def remove(dotfile_path: str, name: str):
     """Removes a repository from the .grony.conf file.
@@ -163,7 +164,7 @@ def remove(dotfile_path: str, name: str):
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 @click.argument('path', type=click.Path(exists=True, dir_okay=True),
                 default='.')
 def init(autoadd: bool, dotfile_path: str, path: str):
@@ -186,7 +187,7 @@ def init(autoadd: bool, dotfile_path: str, path: str):
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 def list(dotfile_path: str):
     """List all configured repositories.
     """
@@ -203,7 +204,7 @@ def list(dotfile_path: str):
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
-              show_default=True, help='.grony.conf location.')
+              show_default=True, help='grony.conf location.')
 @click.option('--all', 'show_all', is_flag=True,
               default=False,
               help='Display all repositories')

@@ -71,12 +71,15 @@ That's it. That command instructs grony to schedule tasks for that repository. N
 
 You need a way to tell grony what commands to run and when. Depending of your needs or personal preferences, you can use two ways:
 
-- A centralized one, configured in `$HOME/.grony.conf`.
+- A centralized one, configured in (whichever is found first):
+  - `$GRONY_CONFIG_PATH`
+  - `$XDG_CONFIG_HOME/.grony/grony.conf`
+  - `$HOME/.grony/grony.conf`.
 - A decentralized one, configured in each repo's `.grony` file.
 
-### Configuring actions in `$HOME/.grony.conf`
+### Configuring actions in `grony.conf`
 
-Open your `$HOME/.grony.conf` in a text editor. You should see something like this (you can ignore any value in the `[config]` section as it's used internally by the program)
+Open your `grony.conf` in a text editor. You should see something like this (you can ignore any value in the `[config]` section as it's used internally by the program)
 
 ```ini
 [config]
@@ -143,9 +146,9 @@ You can use the following command to initialize a basic `.grony` file with defau
 
 ### Overriding `.grony` settings
 
-You can have settings for a repo defined both in the `.grony` file and in your `$HOME/.grony.conf`.
+You can have settings for a repo defined both in the `.grony` file and in your `grony.conf`.
 
-Both settings will be merged at run time and any setting present in `$HOME/.grony.conf` **will override** the one in the `.grony` file.
+Both settings will be merged at run time and any setting present in `grony.conf` **will override** the one in the `.grony` file.
 
 > This is useful to override some settings on a per-machine basis, like the commit message, for example.
 
@@ -166,10 +169,10 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  add     Adds a repository to the .grony.conf file.
+  add     Adds a repository to the grony.conf file.
   init    Initializes a .grony file in the specified path.
   list    List all configured repositories.
-  remove  Removes a repository from the .grony.conf file.
+  remove  Removes a repository from the grony.conf file.
   show    Show the effeective settings for a repository.
   start   Starts the main process.
 ```
