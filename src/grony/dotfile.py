@@ -130,5 +130,14 @@ def load_dotfile(path: str, with_defaults: bool = True) -> Dotfile:
 
 def save_dotfile(dotfile: Dotfile) -> None:
     logging.debug(f'Saving dotfile to {dotfile.path}...')
-    with open(dotfile.path, "w+") as f:
-        dotfile.write(f)
+    
+    try:
+        os.makedirs(Path(dotfile.path).parent)
+    except Exception as ex:
+        logging.debug(f'While calling makedirs(): {ex}')
+
+    try:
+        with open(dotfile.path, "w+") as f:
+            dotfile.write(f)
+    except Exception as ex:
+        logging.fatal(f"Can't update config at {dotfile.path}: {ex}")
