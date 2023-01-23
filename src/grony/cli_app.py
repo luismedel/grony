@@ -53,12 +53,12 @@ def _display_result(result: Dict[str, Any]) -> None:
         fn(message)
 
 
-@click.group
+@click.group()
 def cli() -> None:
     pass
 
 
-@cli.command
+@cli.command()
 @click.option('--reload-delay', type=int, default=5, show_default=True,
               help='Delay between config reloads.')
 @click.option('--log-level',
@@ -158,7 +158,7 @@ def remove(dotfile_path: str, name: str):
         fatal(str(e.reason))
 
 
-@cli.command
+@cli.command()
 @click.option('--add', 'autoadd', is_flag=True, default=False,
               help="Also, add the repository to the default .grony.conf.")
 @click.option('--dotfile', 'dotfile_path',
@@ -183,7 +183,7 @@ def init(autoadd: bool, dotfile_path: str, path: str):
         add(path, None, dotfile_path)
 
 
-@cli.command
+@cli.command()
 @click.option('--dotfile', 'dotfile_path',
               type=click.Path(file_okay=True),
               default=DEFAULT_CONF,
@@ -198,7 +198,7 @@ def list(dotfile_path: str):
     print(tabulate(items, headers=('Name', 'Path'), tablefmt='simple'))
 
 
-@cli.command
+@cli.command()
 @click.option('--ini', 'ini_format', is_flag=True, default=False,
               help='Uses an output format suitable for config files')
 @click.option('--dotfile', 'dotfile_path',
